@@ -177,9 +177,6 @@ keys
 nul
 *.tar
 *.tar.gz
-agent_design_analysis.md
-token_optimization_plan.md
-vscode_extension_plan.md
 
 .channels_cache.json
 .users_cache.json
