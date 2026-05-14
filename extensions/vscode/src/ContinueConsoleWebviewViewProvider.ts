@@ -17,7 +17,7 @@ const MAX_INTERACTIONS = 50;
 export class ContinueConsoleWebviewViewProvider
   implements vscode.WebviewViewProvider
 {
-  public static readonly viewType = "continue.continueConsoleView";
+  public static readonly viewType = "deepseek.deepseekConsoleView";
 
   resolveWebviewView(
     webviewView: vscode.WebviewView,
@@ -155,23 +155,16 @@ export class ContinueConsoleWebviewViewProvider
     let scriptUri: string;
     let styleMainUri: string;
 
-    const inDevelopmentMode =
-      context?.extensionMode === vscode.ExtensionMode.Development;
-    if (inDevelopmentMode) {
-      scriptUri = "http://localhost:5173/src/console.tsx";
-      styleMainUri = "http://localhost:5173/src/indexConsole.css";
-    } else {
-      scriptUri = panel.webview
-        .asWebviewUri(
-          vscode.Uri.joinPath(extensionUri, "gui/assets/indexConsole.js"),
-        )
-        .toString();
-      styleMainUri = panel.webview
-        .asWebviewUri(
-          vscode.Uri.joinPath(extensionUri, "gui/assets/indexConsole.css"),
-        )
-        .toString();
-    }
+    scriptUri = panel.webview
+      .asWebviewUri(
+        vscode.Uri.joinPath(extensionUri, "gui/assets/indexConsole.js"),
+      )
+      .toString();
+    styleMainUri = panel.webview
+      .asWebviewUri(
+        vscode.Uri.joinPath(extensionUri, "gui/assets/indexConsole.css"),
+      )
+      .toString();
 
     panel.webview.options = {
       enableScripts: true,
@@ -198,22 +191,11 @@ export class ContinueConsoleWebviewViewProvider
         <script>const vscode = acquireVsCodeApi();</script>
         <link href="${styleMainUri}" rel="stylesheet">
 
-        <title>Continue</title>
+        <title>DeepSeek Console</title>
       </head>
       <body>
         <div id="root"></div>
 
-        ${
-          inDevelopmentMode
-            ? `<script type="module">
-          import RefreshRuntime from "http://localhost:5173/@react-refresh"
-          RefreshRuntime.injectIntoGlobalHook(window)
-          window.$RefreshReg$ = () => {}
-          window.$RefreshSig$ = () => (type) => type
-          window.__vite_plugin_react_preamble_installed__ = true
-          </script>`
-            : ""
-        }
         <script type="module" nonce="${nonce}" src="${scriptUri}"></script>
       </body>
     </html>`;

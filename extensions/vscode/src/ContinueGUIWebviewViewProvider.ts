@@ -10,7 +10,7 @@ import type { FileEdit } from "core";
 export class ContinueGUIWebviewViewProvider
   implements vscode.WebviewViewProvider
 {
-  public static readonly viewType = "continue.continueGUIView";
+  public static readonly viewType = "deepseek.deepseekGUIView";
   public webviewProtocol: VsCodeWebviewProtocol;
 
   public get isReady(): boolean {
@@ -78,19 +78,12 @@ export class ContinueGUIWebviewViewProvider
       .asWebviewUri(vscode.Uri.joinPath(extensionUri, "gui"))
       .toString();
 
-    const inDevelopmentMode =
-      context?.extensionMode === vscode.ExtensionMode.Development;
-    if (inDevelopmentMode) {
-      scriptUri = "http://localhost:5173/src/main.tsx";
-      styleMainUri = "http://localhost:5173/src/index.css";
-    } else {
-      scriptUri = panel.webview
-        .asWebviewUri(vscode.Uri.joinPath(extensionUri, "gui/assets/index.js"))
-        .toString();
-      styleMainUri = panel.webview
-        .asWebviewUri(vscode.Uri.joinPath(extensionUri, "gui/assets/index.css"))
-        .toString();
-    }
+    scriptUri = panel.webview
+      .asWebviewUri(vscode.Uri.joinPath(extensionUri, "gui/assets/index.js"))
+      .toString();
+    styleMainUri = panel.webview
+      .asWebviewUri(vscode.Uri.joinPath(extensionUri, "gui/assets/index.css"))
+      .toString();
 
     panel.webview.options = {
       enableScripts: true,
@@ -135,22 +128,10 @@ export class ContinueGUIWebviewViewProvider
         <script>const vscode = acquireVsCodeApi();</script>
         <link href="${styleMainUri}" rel="stylesheet">
 
-        <title>Continue</title>
+        <title>DeepSeek TUI</title>
       </head>
       <body>
         <div id="root"></div>
-
-        ${
-          inDevelopmentMode
-            ? `<script type="module">
-          import RefreshRuntime from "http://localhost:5173/@react-refresh"
-          RefreshRuntime.injectIntoGlobalHook(window)
-          window.$RefreshReg$ = () => {}
-          window.$RefreshSig$ = () => (type) => type
-          window.__vite_plugin_react_preamble_installed__ = true
-          </script>`
-            : ""
-        }
 
         <script type="module" nonce="${nonce}" src="${scriptUri}"></script>
 

@@ -77,7 +77,7 @@ export async function activateExtension(context: vscode.ExtensionContext) {
     );
   } catch (error) {
     console.error(
-      "Failed to register Continue config.yaml schema, most likely, YAML extension is not installed",
+      "Failed to register DeepSeek TUI config.yaml schema, most likely, YAML extension is not installed",
       error,
     );
   }

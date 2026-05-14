@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DeepSeek TUI Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "preLaunchTask": "build:extension",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/extensions/vscode"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/extensions/vscode/out/**/*.js"
+      ],
+      "env": {
+        "DEEPSEEK_API_KEY": "sk-855ae459d14741cea44334dbc2284d0f"
+      }
+    }
+  ]
+}

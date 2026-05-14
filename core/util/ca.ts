@@ -1,23 +1,34 @@
 import { globalAgent } from "https";
 
-// @ts-ignore
-import { systemCertsAsync } from "system-ca";
-
 export async function setupCa() {
   try {
     switch (process.platform) {
       case "darwin":
-        // https://www.npmjs.com/package/mac-ca#usage
-        const macCa = await import("mac-ca");
-        macCa.addToGlobalAgent();
+        try {
+          const macCa = await import("mac-ca");
+          macCa.addToGlobalAgent();
+        } catch (e) {
+          // Fallback: try system-ca
+          const { systemCertsAsync } = await import("system-ca");
+          globalAgent.options.ca = await systemCertsAsync();
+        }
         break;
       case "win32":
-        // https://www.npmjs.com/package/win-ca#caveats
-        const winCa = await import("win-ca");
-        winCa.inject("+");
+        try {
+          const winCa = require("win-ca");
+          if (typeof winCa.inject === "function") {
+            winCa.inject("+");
+          } else {
+            winCa({ inject: true, $ave: true, async: true });
+          }
+        } catch (e2) {
+          // Fallback: try system-ca
+          const { systemCertsAsync } = await import("system-ca");
+          globalAgent.options.ca = await systemCertsAsync();
+        }
         break;
       default:
-        // https://www.npmjs.com/package/system-ca
+        const { systemCertsAsync } = await import("system-ca");
         globalAgent.options.ca = await systemCertsAsync();
         break;
     }

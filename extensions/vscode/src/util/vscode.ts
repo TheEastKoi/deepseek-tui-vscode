@@ -22,7 +22,7 @@ export function getNonce() {
 }
 
 export function getExtensionUri(): vscode.Uri {
-  return vscode.extensions.getExtension("Continue.continue")!.extensionUri;
+  return vscode.extensions.getExtension("TheEastKoi.deepseek-tui-vscode")!.extensionUri;
 }
 
 export function getViewColumnOfFile(

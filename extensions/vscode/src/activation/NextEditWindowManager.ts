@@ -94,9 +94,9 @@ const SVG_CONFIG = {
 
 // Command ID - can be used in package.json
 export const HIDE_NEXT_EDIT_SUGGESTION_COMMAND =
-  "continue.nextEditWindow.hideNextEditSuggestion";
+  "deepseek.nextEditWindow.hideNextEditSuggestion";
 export const ACCEPT_NEXT_EDIT_SUGGESTION_COMMAND =
-  "continue.nextEditWindow.acceptNextEditSuggestion";
+  "deepseek.nextEditWindow.acceptNextEditSuggestion";
 
 /**
  * This is where we create SVG windows and deletion decorations for non-FIM next edit suggestions.
@@ -305,8 +305,8 @@ export class NextEditWindowManager {
    */
   private registerCommandSafely(
     commandId:
-      | "continue.nextEditWindow.hideNextEditSuggestion"
-      | "continue.nextEditWindow.acceptNextEditSuggestion",
+      | "deepseek.nextEditWindow.hideNextEditSuggestion"
+      | "deepseek.nextEditWindow.acceptNextEditSuggestion",
     callback: () => Promise<void>,
   ) {
     if (!this.context) {

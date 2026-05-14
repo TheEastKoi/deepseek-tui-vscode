@@ -1,27 +1,24 @@
 {
   "name": "deepseek-tui-vscode",
   "icon": "media/icon.png",
-  "author": "Continue Dev, Inc",
-  "version": "1.3.39",
+  "author": "TheEastKoi",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/continuedev/continue"
+    "url": "https://github.com/TheEastKoi/deepseek-tui-vscode"
   },
   "extensionKind": [
     "ui",
     "workspace"
   ],
   "bugs": {
-    "url": "https://github.com/continuedev/continue/issues",
-    "email": "nate@continue.dev"
+    "url": "https://github.com/TheEastKoi/deepseek-tui-vscode/issues"
   },
-  "homepage": "https://continue.dev",
-  "qna": "https://github.com/continuedev/continue/issues/new/choose",
+  "homepage": "https://github.com/TheEastKoi/deepseek-tui-vscode",
   "license": "Apache-2.0",
-  "displayName": "Continue - open-source AI code agent",
-  "pricing": "Free",
-  "description": "The leading open-source AI code agent",
-  "publisher": "Continue",
+  "displayName": "DeepSeek TUI - AI coding agent",
+  "description": "AI-powered coding agent for VS Code (based on DeepSeek V4)",
+  "publisher": "TheEastKoi",
   "engines": {
     "vscode": "^1.70.0",
     "node": ">=20.20.1"
@@ -53,7 +50,7 @@
   "activationEvents": [
     "onUri",
     "onStartupFinished",
-    "onView:continueGUIView"
+    "onView:deepseek.deepseekGUIView"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -86,64 +83,64 @@
     "configuration": {
       "title": "Continue",
       "properties": {
-        "continue.telemetryEnabled": {
+        "deepseek.telemetryEnabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Continue collects anonymous usage data, cleaned of PII, to help us improve the product for our users. Read more  at [continue.dev â€?Telemetry](https://docs.continue.dev/telemetry).",
+          "markdownDescription": "Continue collects anonymous usage data, cleaned of PII, to help us improve the product for our users. Read more  at [continue.dev ï¿½?Telemetry](https://docs.continue.dev/telemetry).",
           "markdownDeprecationMessage": "This setting is deprecated and will be removed in a later version. Please use the _Telemetry > Allow Anonymous Telemetry_ setting in the extension's User Settings page.",
           "deprecationMessage": "Please use the _Telemetry > Allow Anonymous Telemetry_ setting in the extension's User Settings page."
         },
-        "continue.showInlineTip": {
+        "deepseek.showInlineTip": {
           "type": "boolean",
           "default": true,
           "description": "Show inline suggestion to use the Continue keyboard shortcuts (e.g. \"Cmd/Ctrl L to select code, Cmd/Ctrl I to edit\")."
         },
-        "continue.disableQuickFix": {
+        "deepseek.disableQuickFix": {
           "type": "boolean",
           "default": false,
           "description": "Disable the quick fix feature."
         },
-        "continue.enableQuickActions": {
+        "deepseek.enableQuickActions": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable the experimental Quick Actions feature. Read our walkthrough to learn about configuration and how to share feedback: [continue.dev â€?Walkthrough: Quick Actions (experimental)](https://docs.continue.dev/customize/deep-dives/vscode-actions#quick-actions)"
+          "markdownDescription": "Enable the experimental Quick Actions feature. Read our walkthrough to learn about configuration and how to share feedback: [continue.dev ï¿½?Walkthrough: Quick Actions (experimental)](https://docs.continue.dev/customize/deep-dives/vscode-actions#quick-actions)"
         },
-        "continue.enableTabAutocomplete": {
+        "deepseek.enableTabAutocomplete": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable Continue's tab autocomplete feature. Read our walkthrough to learn about configuration and how to share feedback: [continue.dev â€?Walkthrough: Tab Autocomplete (beta)](https://docs.continue.dev/features/tab-autocomplete)"
+          "markdownDescription": "Enable Continue's tab autocomplete feature. Read our walkthrough to learn about configuration and how to share feedback: [continue.dev ï¿½?Walkthrough: Tab Autocomplete (beta)](https://docs.continue.dev/features/tab-autocomplete)"
         },
-        "continue.enableNextEdit": {
+        "deepseek.enableNextEdit": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable Continue's next edit feature. Read our docs to learn about configuration and how to share feedback: [continue.dev â€?Features â€?Autocomplete â€?Next Edit (experimental)](https://docs.continue.dev/features/autocomplete/next-edit)"
+          "markdownDescription": "Enable Continue's next edit feature. Read our docs to learn about configuration and how to share feedback: [continue.dev ï¿½?Features ï¿½?Autocomplete ï¿½?Next Edit (experimental)](https://docs.continue.dev/features/autocomplete/next-edit)"
         },
-        "continue.pauseTabAutocompleteOnBattery": {
+        "deepseek.pauseTabAutocompleteOnBattery": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Pause Continue's tab autocomplete feature when your battery is low."
         },
-        "continue.pauseCodebaseIndexOnStart": {
+        "deepseek.pauseCodebaseIndexOnStart": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Pause Continue's codebase index on start."
         },
-        "continue.enableConsole": {
+        "deepseek.enableConsole": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Enable a console to log and explore model inputs and outputs. It can be found in the bottom panel."
         },
-        "continue.remoteConfigServerUrl": {
+        "deepseek.remoteConfigServerUrl": {
           "type": "string",
           "default": null,
           "markdownDescription": "If your team is set up to use shared configuration, enter the server URL here and your user token below to enable automatic syncing."
         },
-        "continue.userToken": {
+        "deepseek.userToken": {
           "type": "string",
           "default": null,
           "markdownDescription": "If your team is set up to use shared configuration, enter your user token here and your server URL above to enable automatic syncing."
         },
-        "continue.remoteConfigSyncPeriod": {
+        "deepseek.remoteConfigSyncPeriod": {
           "type": "number",
           "default": 60,
           "description": "The period of time in minutes between automatic syncs."
@@ -152,232 +149,232 @@
     },
     "commands": [
       {
-        "command": "continue.applyCodeFromChat",
+        "command": "deepseek.applyCodeFromChat",
         "category": "Continue",
         "title": "Apply code from chat",
         "group": "Continue"
       },
       {
-        "command": "continue.acceptDiff",
+        "command": "deepseek.acceptDiff",
         "category": "Continue",
         "title": "Accept Diff",
         "group": "Continue"
       },
       {
-        "command": "continue.rejectDiff",
+        "command": "deepseek.rejectDiff",
         "category": "Continue",
         "title": "Reject Diff",
         "group": "Continue",
         "icon": "$(stop)"
       },
       {
-        "command": "continue.acceptVerticalDiffBlock",
+        "command": "deepseek.acceptVerticalDiffBlock",
         "category": "Continue",
         "title": "Accept Vertical Diff Block",
         "group": "Continue"
       },
       {
-        "command": "continue.rejectVerticalDiffBlock",
+        "command": "deepseek.rejectVerticalDiffBlock",
         "category": "Continue",
         "title": "Reject Vertical Diff Block",
         "group": "Continue"
       },
       {
-        "command": "continue.focusEdit",
+        "command": "deepseek.focusEdit",
         "category": "Continue",
         "title": "Add to Edit",
         "group": "Continue"
       },
       {
-        "command": "continue.focusContinueInput",
+        "command": "deepseek.focusContinueInput",
         "category": "Continue",
         "title": "Add Highlighted Code to Context and Clear Chat",
         "group": "Continue"
       },
       {
-        "command": "continue.focusContinueInputWithoutClear",
+        "command": "deepseek.focusContinueInputWithoutClear",
         "category": "Continue",
         "title": "Add to Chat",
         "group": "Continue"
       },
       {
-        "command": "continue.debugTerminal",
+        "command": "deepseek.debugTerminal",
         "category": "Continue",
         "title": "Debug Terminal",
         "group": "Continue"
       },
       {
-        "command": "continue.exitEditMode",
+        "command": "deepseek.exitEditMode",
         "category": "Continue",
         "title": "Exit Edit Mode",
         "group": "Continue"
       },
       {
-        "command": "continue.openConfigPage",
+        "command": "deepseek.openConfigPage",
         "category": "Continue",
         "title": "Open Settings",
         "icon": "$(gear)",
         "group": "Continue"
       },
       {
-        "command": "continue.toggleTabAutocompleteEnabled",
+        "command": "deepseek.toggleTabAutocompleteEnabled",
         "category": "Continue",
         "title": "Toggle Autocomplete Enabled",
         "group": "Continue"
       },
       {
-        "command": "continue.forceAutocomplete",
+        "command": "deepseek.forceAutocomplete",
         "title": "Continue: Force Autocomplete",
         "category": "Continue"
       },
       {
-        "command": "continue.selectFilesAsContext",
+        "command": "deepseek.selectFilesAsContext",
         "category": "Continue",
         "title": "Select Files as Context",
         "group": "Continue"
       },
       {
-        "command": "continue.newSession",
+        "command": "deepseek.newSession",
         "category": "Continue",
         "title": "New Session",
         "icon": "$(add)",
         "group": "Continue"
       },
       {
-        "command": "continue.shareSession",
+        "command": "deepseek.shareSession",
         "category": "Continue",
         "title": "Share Current Chat Session as Markdown",
         "group": "Continue"
       },
       {
-        "command": "continue.viewHistory",
+        "command": "deepseek.viewHistory",
         "category": "Continue",
         "title": "View History",
         "icon": "$(history)",
         "group": "Continue"
       },
       {
-        "command": "continue.viewLogs",
+        "command": "deepseek.viewLogs",
         "category": "Continue",
         "title": "View Logs",
         "group": "Continue"
       },
       {
-        "command": "continue.clearConsole",
+        "command": "deepseek.clearConsole",
         "category": "Continue",
         "title": "Clear Console",
         "icon": "$(clear-all)",
         "group": "Continue"
       },
       {
-        "command": "continue.navigateTo",
+        "command": "deepseek.navigateTo",
         "category": "Continue",
         "title": "Navigate to a path",
         "group": "Continue"
       },
       {
-        "command": "continue.writeCommentsForCode",
+        "command": "deepseek.writeCommentsForCode",
         "category": "Continue",
         "title": "Write Comments for this Code",
         "group": "Continue"
       },
       {
-        "command": "continue.writeDocstringForCode",
+        "command": "deepseek.writeDocstringForCode",
         "category": "Continue",
         "title": "Write a Docstring for this Code",
         "group": "Continue"
       },
       {
-        "command": "continue.fixCode",
+        "command": "deepseek.fixCode",
         "category": "Continue",
         "title": "Fix this Code",
         "group": "Continue"
       },
       {
-        "command": "continue.optimizeCode",
+        "command": "deepseek.optimizeCode",
         "category": "Continue",
         "title": "Optimize this Code",
         "group": "Continue"
       },
       {
-        "command": "continue.fixGrammar",
+        "command": "deepseek.fixGrammar",
         "category": "Continue",
         "title": "Fix Grammar / Spelling",
         "group": "Continue"
       },
       {
-        "command": "continue.codebaseForceReIndex",
+        "command": "deepseek.codebaseForceReIndex",
         "category": "Continue",
         "title": "Codebase Force Re-Index",
         "group": "Continue"
       },
       {
-        "command": "continue.rebuildCodebaseIndex",
+        "command": "deepseek.rebuildCodebaseIndex",
         "category": "Continue",
         "title": "Rebuild codebase index",
         "group": "Continue"
       },
       {
-        "command": "continue.docsIndex",
+        "command": "deepseek.docsIndex",
         "category": "Continue",
         "title": "Docs Index",
         "group": "Continue"
       },
       {
-        "command": "continue.docsReIndex",
+        "command": "deepseek.docsReIndex",
         "category": "Continue",
         "title": "Docs Force Re-Index",
         "group": "Continue"
       },
       {
-        "command": "continue.focusContinueInput",
+        "command": "deepseek.focusContinueInput",
         "category": "Continue",
         "title": "Focus Continue Chat",
         "group": "Continue"
       },
       {
-        "command": "continue.enterEnterpriseLicenseKey",
+        "command": "deepseek.enterEnterpriseLicenseKey",
         "category": "Continue",
         "title": "Enter Enterprise License Key",
         "group": "Continue"
       },
       {
-        "command": "continue.toggleNextEditEnabled",
+        "command": "deepseek.toggleNextEditEnabled",
         "title": "Continue: Toggle Next Edit"
       },
       {
-        "command": "continue.nextEditWindow.hideNextEditSuggestion",
+        "command": "deepseek.nextEditWindow.hideNextEditSuggestion",
         "category": "Continue",
         "title": "Hide Next Edit Suggestion"
       },
       {
-        "command": "continue.nextEditWindow.acceptNextEditSuggestion",
+        "command": "deepseek.nextEditWindow.acceptNextEditSuggestion",
         "category": "Continue",
         "title": "Accept Next Edit Suggestion"
       },
       {
-        "command": "continue.forceNextEdit",
+        "command": "deepseek.forceNextEdit",
         "category": "Continue",
         "title": "Continue: Force Next Edit"
       },
       {
-        "command": "continue.acceptJump",
+        "command": "deepseek.acceptJump",
         "category": "Continue",
         "title": "Continue: Accept Jump Suggestion"
       },
       {
-        "command": "continue.rejectJump",
+        "command": "deepseek.rejectJump",
         "category": "Continue",
         "title": "Continue: Reject Jump Suggestion"
       },
       {
-        "command": "continue.generateRule",
+        "command": "deepseek.generateRule",
         "category": "Continue",
         "title": "Generate Rule",
         "group": "Continue"
       },
       {
-        "command": "continue.openInNewWindow",
+        "command": "deepseek.openInNewWindow",
         "category": "Continue",
         "title": "Open in new window",
         "group": "Continue"
@@ -385,219 +382,219 @@
     ],
     "keybindings": [
       {
-        "command": "continue.focusContinueInput",
+        "command": "deepseek.focusContinueInput",
         "mac": "cmd+l",
         "key": "ctrl+l"
       },
       {
-        "command": "continue.focusContinueInputWithoutClear",
+        "command": "deepseek.focusContinueInputWithoutClear",
         "mac": "cmd+shift+l",
         "key": "ctrl+shift+l"
       },
       {
-        "command": "continue.acceptDiff",
+        "command": "deepseek.acceptDiff",
         "mac": "shift+cmd+enter",
         "key": "shift+ctrl+enter",
-        "when": "continue.diffVisible"
+        "when": "deepseek.diffVisible"
       },
       {
-        "command": "continue.rejectDiff",
+        "command": "deepseek.rejectDiff",
         "mac": "shift+cmd+backspace",
         "key": "shift+ctrl+backspace",
-        "when": "continue.diffVisible"
+        "when": "deepseek.diffVisible"
       },
       {
-        "command": "continue.rejectDiff",
+        "command": "deepseek.rejectDiff",
         "mac": "cmd+z",
         "key": "ctrl+z",
-        "when": "continue.diffVisible"
+        "when": "deepseek.diffVisible"
       },
       {
-        "command": "continue.quickEditHistoryUp",
+        "command": "deepseek.quickEditHistoryUp",
         "mac": "up",
         "key": "up",
-        "when": "false && continue.quickEditHistoryFocused"
+        "when": "false && deepseek.quickEditHistoryFocused"
       },
       {
-        "command": "continue.quickEditHistoryDown",
+        "command": "deepseek.quickEditHistoryDown",
         "mac": "down",
         "key": "down",
-        "when": "false && continue.quickEditHistoryFocused"
+        "when": "false && deepseek.quickEditHistoryFocused"
       },
       {
-        "command": "continue.acceptVerticalDiffBlock",
+        "command": "deepseek.acceptVerticalDiffBlock",
         "mac": "alt+cmd+y",
         "key": "alt+ctrl+y"
       },
       {
-        "command": "continue.rejectVerticalDiffBlock",
+        "command": "deepseek.rejectVerticalDiffBlock",
         "mac": "alt+cmd+n",
         "key": "alt+ctrl+n"
       },
       {
-        "command": "continue.focusEdit",
+        "command": "deepseek.focusEdit",
         "title": "Edit code with natural language",
         "mac": "cmd+i",
         "key": "ctrl+i"
       },
       {
-        "command": "continue.exitEditMode",
+        "command": "deepseek.exitEditMode",
         "mac": "escape",
         "key": "escape",
-        "when": "continue.inEditMode && editorFocus"
+        "when": "deepseek.inEditMode && editorFocus"
       },
       {
-        "command": "continue.debugTerminal",
+        "command": "deepseek.debugTerminal",
         "mac": "cmd+shift+r",
         "key": "ctrl+shift+r"
       },
       {
-        "command": "continue.openInNewWindow",
+        "command": "deepseek.openInNewWindow",
         "mac": "cmd+k cmd+m",
         "key": "ctrl+k ctrl+m",
         "when": "!terminalFocus"
       },
       {
-        "command": "continue.toggleTabAutocompleteEnabled",
+        "command": "deepseek.toggleTabAutocompleteEnabled",
         "mac": "cmd+k cmd+a",
         "key": "ctrl+k ctrl+a",
         "when": "!terminalFocus"
       },
       {
-        "command": "continue.forceAutocomplete",
+        "command": "deepseek.forceAutocomplete",
         "key": "ctrl+alt+space",
         "mac": "cmd+alt+space",
         "when": "editorTextFocus && !editorHasSelection && !editorReadOnly && !inSnippetMode"
       },
       {
-        "command": "continue.applyCodeFromChat",
+        "command": "deepseek.applyCodeFromChat",
         "mac": "alt+a",
         "key": "alt+a"
       },
       {
-        "command": "continue.toggleNextEditEnabled",
+        "command": "deepseek.toggleNextEditEnabled",
         "key": "ctrl+k ctrl+n",
         "mac": "cmd+k cmd+n",
         "when": "editorTextFocus"
       },
       {
-        "command": "continue.nextEditWindow.hideNextEditSuggestion",
+        "command": "deepseek.nextEditWindow.hideNextEditSuggestion",
         "key": "escape",
-        "when": "editorTextFocus && nextEditWindowActive && !continue.jumpDecorationVisible"
+        "when": "editorTextFocus && nextEditWindowActive && !deepseek.jumpDecorationVisible"
       },
       {
-        "command": "continue.nextEditWindow.acceptNextEditSuggestion",
+        "command": "deepseek.nextEditWindow.acceptNextEditSuggestion",
         "key": "tab",
-        "when": "editorTextFocus && nextEditWindowActive && !continue.jumpDecorationVisible"
+        "when": "editorTextFocus && nextEditWindowActive && !deepseek.jumpDecorationVisible"
       },
       {
-        "command": "continue.acceptJump",
+        "command": "deepseek.acceptJump",
         "key": "tab",
-        "when": "editorTextFocus && continue.jumpDecorationVisible"
+        "when": "editorTextFocus && deepseek.jumpDecorationVisible"
       },
       {
-        "command": "continue.rejectJump",
+        "command": "deepseek.rejectJump",
         "key": "escape",
-        "when": "editorTextFocus && continue.jumpDecorationVisible"
+        "when": "editorTextFocus && deepseek.jumpDecorationVisible"
       }
     ],
     "submenus": [
       {
-        "id": "continue.continueSubMenu",
+        "id": "deepseek.deepseekSubMenu",
         "label": "Continue"
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "continue.focusContinueInput"
+          "command": "deepseek.focusContinueInput"
         },
         {
-          "command": "continue.focusContinueInputWithoutClear"
+          "command": "deepseek.focusContinueInputWithoutClear"
         },
         {
-          "command": "continue.debugTerminal"
+          "command": "deepseek.debugTerminal"
         },
         {
-          "command": "continue.newSession"
+          "command": "deepseek.newSession"
         },
         {
-          "command": "continue.enterEnterpriseLicenseKey"
+          "command": "deepseek.enterEnterpriseLicenseKey"
         },
         {
-          "command": "continue.generateRule"
+          "command": "deepseek.generateRule"
         },
         {
-          "command": "continue.openInNewWindow"
+          "command": "deepseek.openInNewWindow"
         }
       ],
       "editor/context": [
         {
-          "submenu": "continue.continueSubMenu",
+          "submenu": "deepseek.deepseekSubMenu",
           "group": "0_acontinue"
         }
       ],
       "editor/title/run": [
         {
-          "command": "continue.rejectDiff",
+          "command": "deepseek.rejectDiff",
           "group": "Continue",
-          "when": "continue.streamingDiff"
+          "when": "deepseek.streamingDiff"
         }
       ],
-      "continue.continueSubMenu": [
+      "deepseek.deepseekSubMenu": [
         {
-          "command": "continue.focusContinueInputWithoutClear",
+          "command": "deepseek.focusContinueInputWithoutClear",
           "group": "Continue"
         },
         {
-          "command": "continue.focusEdit",
+          "command": "deepseek.focusEdit",
           "group": "Continue",
           "when": "!editorReadonly"
         }
       ],
       "explorer/context": [
         {
-          "command": "continue.selectFilesAsContext",
+          "command": "deepseek.selectFilesAsContext",
           "group": "1_debug@1"
         }
       ],
       "view/title": [
         {
-          "command": "continue.newSession",
+          "command": "deepseek.newSession",
           "group": "navigation@1",
-          "when": "view == continue.continueGUIView"
+          "when": "view == deepseek.deepseekGUIView"
         },
         {
-          "command": "continue.viewHistory",
+          "command": "deepseek.viewHistory",
           "group": "navigation@2",
-          "when": "view == continue.continueGUIView"
+          "when": "view == deepseek.deepseekGUIView"
         },
         {
-          "command": "continue.openConfigPage",
+          "command": "deepseek.openConfigPage",
           "group": "navigation@4",
-          "when": "view == continue.continueGUIView"
+          "when": "view == deepseek.deepseekGUIView"
         },
         {
-          "command": "continue.clearConsole",
+          "command": "deepseek.clearConsole",
           "group": "navigation@1",
-          "when": "view == continue.continueConsoleView"
+          "when": "view == deepseek.deepseekConsoleView"
         }
       ],
       "editor/title": [
         {
-          "command": "continue.newSession",
+          "command": "deepseek.newSession",
           "group": "navigation@1",
-          "when": "activeWebviewPanelId == continue.continueGUIView"
+          "when": "activeWebviewPanelId == deepseek.deepseekGUIView"
         },
         {
-          "command": "continue.viewHistory",
+          "command": "deepseek.viewHistory",
           "group": "navigation@2",
-          "when": "activeWebviewPanelId == continue.continueGUIView"
+          "when": "activeWebviewPanelId == deepseek.deepseekGUIView"
         }
       ],
       "terminal/context": [
         {
-          "command": "continue.debugTerminal",
+          "command": "deepseek.debugTerminal",
           "group": "navigation@top"
         }
       ]
@@ -605,37 +602,37 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "continue",
-          "title": "Continue",
+          "id": "deepseek",
+          "title": "DeepSeek TUI",
           "icon": "media/sidebar-icon.png"
         }
       ],
       "panel": [
         {
-          "id": "continueConsole",
-          "title": "Continue Console",
+          "id": "deepseekConsole",
+          "title": "DeepSeek Console",
           "icon": "$(window)"
         }
       ]
     },
     "views": {
-      "continue": [
+      "deepseek": [
         {
           "type": "webview",
-          "id": "continue.continueGUIView",
+          "id": "deepseek.deepseekGUIView",
           "name": "deepseek-tui-vscode",
           "icon": "media/sidebar-icon.png",
           "visibility": "visible"
         }
       ],
-      "continueConsole": [
+      "deepseekConsole": [
         {
           "type": "webview",
-          "id": "continue.continueConsoleView",
-          "name": "Continue Console",
+          "id": "deepseek.deepseekConsoleView",
+          "name": "DeepSeek Console",
           "icon": "$(window)",
           "visibility": "visible",
-          "when": "config.continue.enableConsole"
+          "when": "config.deepseek.enableConsole"
         }
       ]
     },

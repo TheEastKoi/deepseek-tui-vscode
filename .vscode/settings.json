@@ -1,0 +1,6 @@
+{
+  "terminal.integrated.env.windows": {
+    "PATH": "${env:PATH};D:\\nodejs"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

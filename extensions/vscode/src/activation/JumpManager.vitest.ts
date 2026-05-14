@@ -307,16 +307,16 @@ describe("JumpManager", () => {
       // Should set context
       expect(vscode.commands.executeCommand).toHaveBeenCalledWith(
         "setContext",
-        "continue.jumpDecorationVisible",
+        "deepseek.jumpDecorationVisible",
         true,
       );
       // Should register key listeners
       expect(vscode.commands.registerCommand).toHaveBeenCalledWith(
-        "continue.acceptJump",
+        "deepseek.acceptJump",
         expect.any(Function),
       );
       expect(vscode.commands.registerCommand).toHaveBeenCalledWith(
-        "continue.rejectJump",
+        "deepseek.rejectJump",
         expect.any(Function),
       );
     });
@@ -361,7 +361,7 @@ describe("JumpManager", () => {
       // Find the acceptJump command handler.
       const commandArgs = vi
         .mocked(vscode.commands.registerCommand)
-        .mock.calls.find((call: any) => call[0] === "continue.acceptJump");
+        .mock.calls.find((call: any) => call[0] === "deepseek.acceptJump");
       expect(commandArgs).toBeDefined();
       const acceptJumpHandler = commandArgs![1];
 
@@ -395,7 +395,7 @@ describe("JumpManager", () => {
       // Find the command handler
       const commandArgs = vi
         .mocked(vscode.commands.registerCommand)
-        .mock.calls.find((call: any) => call[0] === "continue.acceptJump");
+        .mock.calls.find((call: any) => call[0] === "deepseek.acceptJump");
       expect(commandArgs).toBeDefined();
       const acceptJumpHandler = commandArgs![1];
 
@@ -412,7 +412,7 @@ describe("JumpManager", () => {
       // Expect decoration to be cleared
       expect(vscode.commands.executeCommand).toHaveBeenCalledWith(
         "setContext",
-        "continue.jumpDecorationVisible",
+        "deepseek.jumpDecorationVisible",
         false,
       );
       // Expect inline suggest to be triggered
@@ -443,7 +443,7 @@ describe("JumpManager", () => {
       // Find the command handler
       const commandArgs = vi
         .mocked(vscode.commands.registerCommand)
-        .mock.calls.find((call: any) => call[0] === "continue.rejectJump");
+        .mock.calls.find((call: any) => call[0] === "deepseek.rejectJump");
       expect(commandArgs).toBeDefined();
       const rejectJumpHandler = commandArgs![1];
       expect(rejectJumpHandler).toBeDefined();
@@ -460,7 +460,7 @@ describe("JumpManager", () => {
       // Expect decoration to be cleared
       expect(vscode.commands.executeCommand).toHaveBeenCalledWith(
         "setContext",
-        "continue.jumpDecorationVisible",
+        "deepseek.jumpDecorationVisible",
         false,
       );
     });
@@ -499,7 +499,7 @@ describe("JumpManager", () => {
 
       // Should trigger reject jump
       expect(vscode.commands.executeCommand).toHaveBeenCalledWith(
-        "continue.rejectJump",
+        "deepseek.rejectJump",
       );
     });
   });
@@ -588,7 +588,7 @@ describe("JumpManager", () => {
       // Expect context to be reset
       expect(vscode.commands.executeCommand).toHaveBeenCalledWith(
         "setContext",
-        "continue.jumpDecorationVisible",
+        "deepseek.jumpDecorationVisible",
         false,
       );
     });

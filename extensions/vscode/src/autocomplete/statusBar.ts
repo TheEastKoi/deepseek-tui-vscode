@@ -57,7 +57,7 @@ const statusBarItemText = (
       if (loading) {
         text = "$(loading~spin) Continue";
       } else {
-        text = "Continue";
+        text = "DeepSeek TUI";
       }
       break;
     case StatusBarStatus.Disabled:

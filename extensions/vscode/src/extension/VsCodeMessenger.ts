@@ -110,7 +110,7 @@ export class VsCodeMessenger {
     });
 
     this.onWebview("toggleDevTools", (msg) => {
-      vscode.commands.executeCommand("continue.viewLogs");
+      vscode.commands.executeCommand("deepseek.viewLogs");
     });
 
     this.onWebview("reloadWindow", (msg) => {
@@ -120,12 +120,12 @@ export class VsCodeMessenger {
       vscode.commands.executeCommand("workbench.action.focusActiveEditorGroup");
     });
     this.onWebview("toggleFullScreen", (msg) => {
-      vscode.commands.executeCommand("continue.openInNewWindow");
+      vscode.commands.executeCommand("deepseek.openInNewWindow");
     });
 
     this.onWebview("acceptDiff", async ({ data: { filepath, streamId } }) => {
       await vscode.commands.executeCommand(
-        "continue.acceptDiff",
+        "deepseek.acceptDiff",
         filepath,
         streamId,
       );
@@ -133,7 +133,7 @@ export class VsCodeMessenger {
 
     this.onWebview("rejectDiff", async ({ data: { filepath, streamId } }) => {
       await vscode.commands.executeCommand(
-        "continue.rejectDiff",
+        "deepseek.rejectDiff",
         filepath,
         streamId,
       );
@@ -264,7 +264,7 @@ export class VsCodeMessenger {
 
     this.onWebview("session/share", async (msg) => {
       await vscode.commands.executeCommand(
-        "continue.shareSession",
+        "deepseek.shareSession",
         msg.data.sessionId,
       );
     });
@@ -396,7 +396,7 @@ export class VsCodeMessenger {
           errorMessage.includes("GitHub App")
         ) {
           const selection = await vscode.window.showErrorMessage(
-            "Background agents need GitHub access. Please connect your GitHub account to Continue.",
+            "Background agents need GitHub access. Please connect your GitHub account to DeepSeek TUI.",
             "Connect GitHub",
             "Cancel",
           );
