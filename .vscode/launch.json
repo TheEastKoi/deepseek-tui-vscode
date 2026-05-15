@@ -13,8 +13,16 @@
         "${workspaceFolder}/extensions/vscode/out/**/*.js"
       ],
       "env": {
-        "DEEPSEEK_API_KEY": "sk-855ae459d14741cea44334dbc2284d0f"
+        "DEEPSEEK_API_KEY": "${input:deepseekApiKey}"
       }
+    }
+  ],
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "deepseekApiKey",
+      "description": "Enter your DeepSeek API Key",
+      "password": true
     }
   ]
 }
